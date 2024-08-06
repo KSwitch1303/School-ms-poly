@@ -64,6 +64,7 @@ const LoginPage = ({ role }) => {
             dispatch(loginUser(fields, role))
         }
     };
+    
 
     const handleInputChange = (event) => {
         const { name } = event.target;
