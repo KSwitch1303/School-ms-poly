@@ -85,10 +85,10 @@ const StudentSubjects = () => {
                     Department Details
                 </Typography>
                 <Typography variant="h5" gutterBottom>
-                    You are currently in Department {sclassDetails && sclassDetails.sclassName}
+                    
                 </Typography>
                 <Typography variant="h6" gutterBottom>
-                    And these are the Courses:
+                   
                 </Typography>
                 <Table>
                     <TableHead>
