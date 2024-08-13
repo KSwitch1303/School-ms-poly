@@ -64,7 +64,7 @@ const LoginPage = ({ role }) => {
             dispatch(loginUser(fields, role))
         }
     };
-    
+
 
     const handleInputChange = (event) => {
         const { name } = event.target;
@@ -150,13 +150,13 @@ const LoginPage = ({ role }) => {
                                         required
                                         fullWidth
                                         id="rollNumber"
-                                        label="Enter your Roll Number"
+                                        label="Enter your Matric Number"
                                         name="rollNumber"
                                         autoComplete="off"
-                                        type="number"
+                                        type="text"
                                         autoFocus
                                         error={rollNumberError}
-                                        helperText={rollNumberError && 'Roll Number is required'}
+                                        helperText={rollNumberError && 'Matric Number is required'}
                                         onChange={handleInputChange}
                                     />
                                     <TextField
