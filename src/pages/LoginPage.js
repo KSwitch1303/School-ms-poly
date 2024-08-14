@@ -17,6 +17,8 @@ const LoginPage = ({ role }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const [falseRole, setFalseRole] = useState('')
+
     const { status, currentUser, response, error, currentRole } = useSelector(state => state.user);;
 
     const [toggle, setToggle] = useState(false)
@@ -122,6 +124,14 @@ const LoginPage = ({ role }) => {
         }
     }, [status, currentRole, navigate, error, response, currentUser]);
 
+    useEffect(() => {
+        if (role === "Teacher") {
+            setFalseRole("Lecturer")
+        } else {
+            setFalseRole(role)
+        }
+    }, [role]);
+
     return (
         <ThemeProvider theme={defaultTheme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
@@ -137,7 +147,7 @@ const LoginPage = ({ role }) => {
                         }}
                     >
                         <Typography variant="h4" sx={{ mb: 2, color: "#2c2143" }}>
-                            {role} Login
+                            {falseRole} Login
                         </Typography>
                         <Typography variant="h7">
                             Welcome back! Please enter your details
