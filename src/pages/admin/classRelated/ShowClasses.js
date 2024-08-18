@@ -133,11 +133,11 @@ const ShowClasses = () => {
 
   const actions = [
     {
-      icon: <AddCardIcon color="primary" />, name: 'Add New Course',
+      icon: <AddCardIcon color="primary" />, name: 'Add New Level',
       action: () => navigate("/Admin/addclass")
     },
     {
-      icon: <DeleteIcon color="error" />, name: 'Delete All Classes',
+      icon: <DeleteIcon color="error" />, name: 'Delete All Levels',
       action: () => deleteHandler(adminID, "Sclasses")
     },
   ];

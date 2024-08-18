@@ -113,11 +113,11 @@ const ShowStudents = () => {
                 <IconButton onClick={() => deleteHandler(row.id, "Student")}>
                     <PersonRemoveIcon color="error" />
                 </IconButton>
-                <BlueButton variant="contained"
+                {/* <BlueButton variant="contained"
                     onClick={() => navigate("/Admin/students/student/" + row.id)}>
                     View
-                </BlueButton>
-                <React.Fragment>
+                </BlueButton> */}
+                {/* <React.Fragment>
                     <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
                         <Button onClick={handleClick}>{options[selectedIndex]}</Button>
                         <BlackButton
@@ -168,7 +168,7 @@ const ShowStudents = () => {
                             </Grow>
                         )}
                     </Popper>
-                </React.Fragment>
+                </React.Fragment> */}
             </>
         );
     };

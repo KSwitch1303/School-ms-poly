@@ -116,10 +116,12 @@ const AdminRegisterPage = () => {
                                 required
                                 fullWidth
                                 id="schoolName"
-                                label="Create your school name"
+                                // label="Create your school name"
                                 name="schoolName"
+                                disabled
                                 autoComplete="off"
                                 error={schoolNameError}
+                                value={"The Polytechnic Ile-Ife"}
                                 helperText={schoolNameError && 'School name is required'}
                                 onChange={handleInputChange}
                             />
@@ -161,12 +163,12 @@ const AdminRegisterPage = () => {
                                     ),
                                 }}
                             />
-                            <Grid container sx={{ display: "flex", justifyContent: "space-between" }}>
+                            {/* <Grid container sx={{ display: "flex", justifyContent: "space-between" }}>
                                 <FormControlLabel
                                     control={<Checkbox value="remember" color="primary" />}
                                     label="Remember me"
                                 />
-                            </Grid>
+                            </Grid> */}
                             <LightPurpleButton
                                 type="submit"
                                 fullWidth
@@ -175,7 +177,7 @@ const AdminRegisterPage = () => {
                             >
                                 {loader ? <CircularProgress size={24} color="inherit"/> : "Register"}
                             </LightPurpleButton>
-                            <Grid container>
+                            {/* <Grid container>
                                 <Grid>
                                     Already have an account?
                                 </Grid>
@@ -184,7 +186,7 @@ const AdminRegisterPage = () => {
                                         Log in
                                     </StyledLink>
                                 </Grid>
-                            </Grid>
+                            </Grid> */}
                         </Box>
                     </Box>
                 </Grid>

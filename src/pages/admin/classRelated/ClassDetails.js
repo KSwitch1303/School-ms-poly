@@ -219,10 +219,10 @@ const ClassDetails = () => {
         return (
             <>
                 <Typography variant="h4" align="center" gutterBottom>
-                    Department Details
+                    Level Details
                 </Typography>
                 <Typography variant="h5" gutterBottom>
-                    This is Department {sclassDetails && sclassDetails.sclassName}
+                    This is {sclassDetails && sclassDetails.sclassName}
                 </Typography>
                 <Typography variant="h6" gutterBottom>
                     Number of Courses: {numberOfSubjects}

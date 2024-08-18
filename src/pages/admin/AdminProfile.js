@@ -5,6 +5,9 @@
 // import { useNavigate } from 'react-router-dom'
 // import { authLogout } from '../../redux/userRelated/userSlice';
 // import { Button, Collapse } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { LightPurpleButton } from '../../components/buttonStyles';
+import styled from 'styled-components';
 
 import { useSelector } from 'react-redux';
 
@@ -52,6 +55,11 @@ const AdminProfile = () => {
             <br />
             School: {currentUser.schoolName}
             <br />
+            <LightPurpleButton variant="contained" fullWidth>
+                <Link to="/Adminregister" target='_blank' style={{color:"#550080"}} >
+                    Sign up
+                </Link>
+            </LightPurpleButton>
             {/* <Button variant="contained" color="error" onClick={deleteHandler}>Delete</Button> */}
             {/* <Button variant="contained" sx={styles.showButton}
                 onClick={() => setShowTab(!showTab)}>
@@ -103,3 +111,8 @@ export default AdminProfile
 //         }
 //     }
 // }
+
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
