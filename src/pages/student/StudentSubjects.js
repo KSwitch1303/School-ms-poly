@@ -95,6 +95,8 @@ const StudentSubjects = () => {
                         <StyledTableRow>
                             <StyledTableCell>Course Name</StyledTableCell>
                             <StyledTableCell>Course Code</StyledTableCell>
+                            <StyledTableCell>Course Unit</StyledTableCell>
+                            <StyledTableCell>Semester</StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
                     <TableBody>
@@ -103,6 +105,8 @@ const StudentSubjects = () => {
                                 <StyledTableRow key={index}>
                                     <StyledTableCell>{subject.subName}</StyledTableCell>
                                     <StyledTableCell>{subject.subCode}</StyledTableCell>
+                                    <StyledTableCell>{subject.unit}</StyledTableCell>
+                                    <StyledTableCell>{subject.semester}</StyledTableCell>
                                 </StyledTableRow>
                             ))}
                     </TableBody>
