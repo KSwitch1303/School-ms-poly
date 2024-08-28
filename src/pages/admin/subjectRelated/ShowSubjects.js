@@ -43,6 +43,8 @@ const ShowSubjects = () => {
         { id: 'subName', label: 'Course Title', minWidth: 170 },
         { id: 'sessions', label: 'Sessions', minWidth: 170 },
         { id: 'sclassName', label: 'Level', minWidth: 170 },
+        { id: 'semester', label: 'Semester', minWidth: 170 },
+        { id: 'unit', label: 'Unit', minWidth: 170 },
     ]
 
     const subjectRows = subjectsList.map((subject) => {
@@ -50,6 +52,8 @@ const ShowSubjects = () => {
             subName: subject.subName,
             sessions: subject.sessions,
             sclassName: subject.sclassName.sclassName,
+            semester: subject.semester,
+            unit: subject.unit,
             sclassID: subject.sclassName._id,
             id: subject._id,
         };

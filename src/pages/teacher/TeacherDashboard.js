@@ -25,8 +25,8 @@ import TeacherViewStudent from './TeacherViewStudent';
 import StudentExamMarks from '../admin/studentRelated/StudentExamMarks';
 
 
-const TeacherDashboard = () => {
-    const user = JSON.parse(localStorage.getItem('user'));
+const TeacherDashboard = async () => {
+    const user = await JSON.parse(localStorage.getItem('user'));
     localStorage.setItem('name', user.name);
     localStorage.setItem('subject', user.teachSubject.subName);
     localStorage.setItem('subjectID', user.teachSubject._id);
@@ -60,7 +60,7 @@ const TeacherDashboard = () => {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Welcome {localStorage.getItem('name')} Lecturer of {localStorage.getItem('subject')}
+                            Welcome, {localStorage.getItem('name')}
                         </Typography>
                         <AccountMenu />
                     </Toolbar>

@@ -7,7 +7,7 @@ import { underControl } from '../../../redux/userRelated/userSlice';
 import Popup from '../../../components/Popup';
 
 const SubjectForm = () => {
-    const [subjects, setSubjects] = useState([{ subName: "", subCode: "", sessions: "" }]);
+    const [subjects, setSubjects] = useState([{ subName: "", subCode: "", sessions: "", semester: "", unit: "" }]);
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -36,14 +36,26 @@ const SubjectForm = () => {
         setSubjects(newSubjects);
     };
 
+    const handleUnitChange = (index) => (event) => {
+        const newSubjects = [...subjects];
+        newSubjects[index].unit = event.target.value;
+        setSubjects(newSubjects);
+    }
+
     const handleSessionsChange = (index) => (event) => {
         const newSubjects = [...subjects];
         newSubjects[index].sessions = event.target.value || 0;
         setSubjects(newSubjects);
     };
 
+    const handleSemesterChange = (index) => (event) => {
+        const newSubjects = [...subjects];
+        newSubjects[index].semester = event.target.value;
+        setSubjects(newSubjects);
+    }
+
     const handleAddSubject = () => {
-        setSubjects([...subjects, { subName: "", subCode: "" }]);
+        setSubjects([...subjects, { subName: "", subCode: "", sessions: "", semester: "", unit: "" }]);
     };
 
     const handleRemoveSubject = (index) => () => {
@@ -58,6 +70,8 @@ const SubjectForm = () => {
             subName: subject.subName,
             subCode: subject.subCode,
             sessions: subject.sessions,
+            unit: subject.unit,
+            semester: subject.semester,
         })),
         adminID,
     };
@@ -125,6 +139,30 @@ const SubjectForm = () => {
                                 inputProps={{ min: 0 }}
                                 value={subject.sessions}
                                 onChange={handleSessionsChange(index)}
+                                sx={styles.inputField}
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={4}>
+                            <TextField
+                                fullWidth
+                                label="Unit"
+                                variant="outlined"
+                                type="number"
+                                inputProps={{ min: 0 }}
+                                value={subject.unit}
+                                onChange={handleUnitChange(index)}
+                                sx={styles.inputField}
+                                required
+                            />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField
+                                fullWidth
+                                label="Semester"
+                                variant="outlined"
+                                value={subject.semester}
+                                onChange={handleSemesterChange(index)}
                                 sx={styles.inputField}
                                 required
                             />

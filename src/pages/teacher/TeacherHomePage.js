@@ -1,3 +1,4 @@
+import './teach.css'
 import { Container, Grid, Paper } from '@mui/material'
 import SeeNotice from '../../components/SeeNotice';
 import CountUp from 'react-countup';
@@ -18,6 +19,7 @@ const TeacherHomePage = () => {
 
     const classID = currentUser.teachSclass?._id
     const subjectID = currentUser.teachSubject?._id
+    const subjectName = currentUser.teachSubject?.subName
 
     useEffect(() => {
         dispatch(getSubjectDetails(subjectID, "Subject"));
@@ -58,6 +60,16 @@ const TeacherHomePage = () => {
                             <Data start={0} end={1} duration={5} />
                         </StyledPaper>
                     </Grid>
+                    <Grid item xs={12} md={3} lg={3}>
+                        <StyledPaper2>
+                            <Title>
+                                <select name="subject" id="" className='subcard'>
+                                    <option value="">View Courses</option>
+                                    <option disabled value="0">{subjectName}</option>
+                                </select>
+                            </Title>
+                        </StyledPaper2>
+                    </Grid>
                     
                     <Grid item xs={12}>
                         <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
@@ -76,6 +88,16 @@ const StyledPaper = styled(Paper)`
   flex-direction: column;
   height: 200px;
   justify-content: space-between;
+  align-items: center;
+  text-align: center;
+`;
+
+const StyledPaper2 = styled(Paper)`
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: center;
   align-items: center;
   text-align: center;
 `;
