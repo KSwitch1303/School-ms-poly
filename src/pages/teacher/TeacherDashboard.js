@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     CssBaseline,
     Box,
@@ -12,11 +12,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import TeacherSideBar from './TeacherSideBar';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import Logout from '../Logout'
+import Logout from '../Logout';
 import AccountMenu from '../../components/AccountMenu';
 import { AppBar, Drawer } from '../../components/styles';
 import StudentAttendance from '../admin/studentRelated/StudentAttendance';
-
 import TeacherClassDetails from './TeacherClassDetails';
 import TeacherComplain from './TeacherComplain';
 import TeacherHomePage from './TeacherHomePage';
@@ -24,83 +23,90 @@ import TeacherProfile from './TeacherProfile';
 import TeacherViewStudent from './TeacherViewStudent';
 import StudentExamMarks from '../admin/studentRelated/StudentExamMarks';
 
-
-const TeacherDashboard = async () => {
-    const user = await JSON.parse(localStorage.getItem('user'));
-    localStorage.setItem('name', user.name);
-    localStorage.setItem('subject', user.teachSubject.subName);
-    localStorage.setItem('subjectID', user.teachSubject._id);
+const TeacherDashboard = () => {
     const [open, setOpen] = useState(true);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const userData = await JSON.parse(localStorage.getItem('user'));
+            localStorage.setItem('name', userData.name);
+            localStorage.setItem('subject', userData.teachSubject.subName);
+            localStorage.setItem('subjectID', userData.teachSubject._id);
+            setUser(userData);
+        };
+
+        fetchData();
+    }, []);
+
     const toggleDrawer = () => {
         setOpen(!open);
     };
 
+    if (!user) {
+        return <Typography>Loading...</Typography>;  // or any loading spinner
+    }
+
     return (
-        <>
-            <Box sx={{ display: 'flex' }}>
-                <CssBaseline />
-                <AppBar open={open} position='absolute' style={{ backgroundColor: 'orange' }}>
-                    <Toolbar sx={{ pr: '24px' }}>
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={toggleDrawer}
-                            sx={{
-                                marginRight: '36px',
-                                ...(open && { display: 'none' }),
-                            }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography
-                            component="h1"
-                            variant="h6"
-                            color="inherit"
-                            noWrap
-                            sx={{ flexGrow: 1 }}
-                        >
-                            Welcome, {localStorage.getItem('name')}
-                        </Typography>
-                        <AccountMenu />
-                    </Toolbar>
-                </AppBar>
-                <Drawer variant="permanent" open={open} sx={open ? styles.drawerStyled : styles.hideDrawer}>
-                    <Toolbar sx={styles.toolBarStyled}>
-                        <IconButton onClick={toggleDrawer}>
-                            <ChevronLeftIcon />
-                        </IconButton>
-                    </Toolbar>
-                    <Divider />
-                    <List component="nav">
-                        <TeacherSideBar />
-                    </List>
-                </Drawer>
-                <Box component="main" sx={styles.boxStyled}>
-                    <Toolbar />
-                    <Routes>
-                        <Route path="/" element={<TeacherHomePage />} />
-                        <Route path='*' element={<Navigate to="/" />} />
-                        <Route path="/Teacher/dashboard" element={<TeacherHomePage />} />
-                        <Route path="/Teacher/profile" element={<TeacherProfile />} />
-
-                        <Route path="/Teacher/complain" element={<TeacherComplain />} />
-
-                        <Route path="/Teacher/class" element={<TeacherClassDetails />} />
-                        <Route path="/Teacher/class/student/:id" element={<TeacherViewStudent />} />
-
-                        <Route path="/Teacher/class/student/attendance/:studentID/:subjectID" element={<StudentAttendance situation="Subject" />} />
-                        <Route path="/Teacher/class/student/marks/:studentID/:subjectID" element={<StudentExamMarks situation="Subject" />} />
-
-                        <Route path="/logout" element={<Logout />} />
-                    </Routes>
-                </Box>
+        <Box sx={{ display: 'flex' }}>
+            <CssBaseline />
+            <AppBar open={open} position='absolute' style={{ backgroundColor: 'orange' }}>
+                <Toolbar sx={{ pr: '24px' }}>
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={toggleDrawer}
+                        sx={{
+                            marginRight: '36px',
+                            ...(open && { display: 'none' }),
+                        }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography
+                        component="h1"
+                        variant="h6"
+                        color="inherit"
+                        noWrap
+                        sx={{ flexGrow: 1 }}
+                    >
+                        Welcome, {localStorage.getItem('name')}
+                    </Typography>
+                    <AccountMenu />
+                </Toolbar>
+            </AppBar>
+            <Drawer variant="permanent" open={open} sx={open ? styles.drawerStyled : styles.hideDrawer}>
+                <Toolbar sx={styles.toolBarStyled}>
+                    <IconButton onClick={toggleDrawer}>
+                        <ChevronLeftIcon />
+                    </IconButton>
+                </Toolbar>
+                <Divider />
+                <List component="nav">
+                    <TeacherSideBar />
+                </List>
+            </Drawer>
+            <Box component="main" sx={styles.boxStyled}>
+                <Toolbar />
+                <Routes>
+                    <Route path="/" element={<TeacherHomePage />} />
+                    <Route path='*' element={<Navigate to="/" />} />
+                    <Route path="/Teacher/dashboard" element={<TeacherHomePage />} />
+                    <Route path="/Teacher/profile" element={<TeacherProfile />} />
+                    <Route path="/Teacher/complain" element={<TeacherComplain />} />
+                    <Route path="/Teacher/class" element={<TeacherClassDetails />} />
+                    <Route path="/Teacher/class/student/:id" element={<TeacherViewStudent />} />
+                    <Route path="/Teacher/class/student/attendance/:studentID/:subjectID" element={<StudentAttendance situation="Subject" />} />
+                    <Route path="/Teacher/class/student/marks/:studentID/:subjectID" element={<StudentExamMarks situation="Subject" />} />
+                    <Route path="/logout" element={<Logout />} />
+                </Routes>
             </Box>
-        </>
+        </Box>
     );
-}
+};
 
-export default TeacherDashboard
+export default TeacherDashboard;
 
 const styles = {
     boxStyled: {
@@ -127,4 +133,4 @@ const styles = {
             display: 'none',
         },
     },
-}
+};
