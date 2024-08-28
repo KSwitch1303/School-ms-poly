@@ -25,7 +25,7 @@ const StudentAttendance = ({ situation }) => {
     const [subjectName, setSubjectName] = useState("");
     const [chosenSubName, setChosenSubName] = useState("");
     const [status, setStatus] = useState('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(Date.now().toString());
 
     const [showPopup, setShowPopup] = useState(false);
     const [message, setMessage] = useState("");
@@ -162,15 +162,7 @@ const StudentAttendance = ({ situation }) => {
                                         </Select>
                                     </FormControl>
                                     <FormControl>
-                                        <TextField
-                                            label="Select Date"
-                                            type="date"
-                                            value={date}
-                                            onChange={(event) => setDate(event.target.value)} required
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                        />
+                                    
                                     </FormControl>
                                 </Stack>
 

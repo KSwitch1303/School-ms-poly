@@ -86,6 +86,14 @@ const ClassDetails = () => {
                 >
                     View
                 </BlueButton >
+                <BlueButton
+                    variant="contained"
+                    onClick={() => {
+                        navigate("/Admin/teachers/addteacher/" + row.id)
+                    }}
+                >
+                    Add Lecturer
+                </BlueButton >
             </>
         );
     };

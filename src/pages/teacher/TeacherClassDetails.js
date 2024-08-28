@@ -14,8 +14,10 @@ const TeacherClassDetails = () => {
     const { sclassStudents, loading, error, getresponse } = useSelector((state) => state.sclass);
 
     const { currentUser } = useSelector((state) => state.user);
+    console.log(currentUser)
     const classID = currentUser.teachSclass?._id
     const subjectID = currentUser.teachSubject?._id
+    const sessions = currentUser.teachSubject?.sessions
 
     useEffect(() => {
         dispatch(getClassStudents(classID));
@@ -28,16 +30,27 @@ const TeacherClassDetails = () => {
     const studentColumns = [
         { id: 'name', label: 'Name', minWidth: 170 },
         { id: 'rollNum', label: 'Matric Number', minWidth: 100 },
+        { id: 'attendance', label: 'Attendance', minWidth: 170, align: 'center' },
     ]
     
 
     const studentRows = sclassStudents.map((student) => {
-        
+        let attendance = 0;
+        for (let i = 0; i < student.attendance.length; i++) {
+            if (student.attendance[i].subName === subjectID) {
+                if (student.attendance[i].status === "Present") {
+                    attendance += 1
+                }
+            }
+        }
+        if (attendance === undefined) {
+            attendance = "N/A"
+        }
         return {
             name: student.name,
             rollNum: student.rollNum,
             id: student._id,
-            
+            attendance: `${attendance.toString()} / ${sessions} `
         };
     })
 
